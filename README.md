@@ -19,6 +19,7 @@ A clean-architecture inspired boilerplate for building Node.js services using Fa
 *   **Environment Variables:** Configuration managed via `.env` files and Zod validation (`dotenv`).
 *   **Graceful Shutdown:** Handles `SIGINT` and `SIGTERM` signals.
 *   **Structured Logging:** Uses Fastify's built-in Pino logger with `pino-pretty` for development.
+*   **Code Generation:** Script to quickly scaffold new modules (domain, application, infrastructure).
 
 ## Prerequisites
 
@@ -81,6 +82,8 @@ A clean-architecture inspired boilerplate for building Node.js services using Fa
 *   **Development Mode (with hot-reloading):**
     ```bash
     npm run dev
+    # or
+    yarn dev
     ```
     The server will restart automatically when you make changes in the `src` directory.
 
@@ -88,66 +91,21 @@ A clean-architecture inspired boilerplate for building Node.js services using Fa
     1.  Build the TypeScript code:
         ```bash
         npm run build
+        # or
+        yarn build
         ```
     2.  Start the server:
         ```bash
         npm start
+        # or
+        yarn start
         ```
 
-## Accessing the API
+## Code Generation
 
-*   **API Base URL:** `http://localhost:3000/api/v1` (by default)
-*   **Health Check:** `GET http://localhost:3000/health`
-*   **User Endpoint Example:** `POST http://localhost:3000/api/v1/users`
-*   **Swagger Documentation:** `http://localhost:3000/docs`
+This boilerplate includes a code generator script to quickly scaffold the basic files for a new module following the clean architecture structure.
 
-## Linting and Formatting
+**Usage:**
 
-*   **Check linting errors:**
-    ```bash
-    npm run lint
-    ```
-*   **Fix linting and formatting errors:**
-    ```bash
-    npm run lint:fix
-    ```
-
-## Project Structure
-```
-.
-├── .env.example
-├── .env
-├── .gitignore
-├── package.json
-├── tsconfig.json
-├── src
-│   ├── app.ts
-│   ├── server.ts
-│   ├── config
-│   │   ├── env.ts
-│   │   └── index.ts
-│   ├── domain
-│   │   └── user.ts
-│   ├── application
-│   │   ├── interfaces
-│   │   │   └── IUserRepository.ts
-│   │   └── services
-│   │       └── UserService.ts
-│   ├── infrastructure
-│   │   ├── database
-│   │   │   ├── supabaseClient.ts
-│   │   │   └── SupabaseUserRepository.ts
-│   │   └── web
-│   │       ├── plugins
-│   │       │   ├── sensible.ts
-│   │       │   ├── supabase.ts
-│   │       │   └── swagger.ts
-│   │       ├── routes
-│   │       │   └── user
-│   │       │       ├── index.ts
-│   │       │       ├── user.handler.ts
-│   │       │       └── user.schema.ts
-│   │       └── schemas
-│   └── utils
-└── README.md
-```
+```bash
+yarn generate:module --name=<module_name>

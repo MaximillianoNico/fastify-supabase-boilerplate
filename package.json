@@ -9,6 +9,7 @@
   "scripts": {
     "build": "tsc && tsc-alias",
     "start": "node dist/server.js",
+    "generate:module": "node --no-warnings scripts/generate-module.mjs",
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --exit-child --watch src src/server.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
